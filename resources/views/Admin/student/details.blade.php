@@ -12,9 +12,9 @@
     </div>
 
     <div>
-        <a href="{{ route('students.index') }}" class="btn btn-secondary">Back to Students List</a>
-        <a href="{{ route('students.edit', $student->id) }}" class="btn btn-warning">Edit Student</a>
-        <form action="{{ route('students.destroy', $student->id) }}" method="POST" style="display:inline;">
+        <a href="{{ route('student.index') }}" class="btn btn-secondary">Back to Students List</a>
+        <a href="{{ route('student.edit', $student->id) }}" class="btn btn-warning">Edit Student</a>
+        <form action="{{ route('student.destroy', $student->id) }}" method="POST" style="display:inline;">
             @csrf
             @method('DELETE')
             <button type="submit" class="btn btn-danger">Delete Student</button>

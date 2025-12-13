@@ -20,9 +20,9 @@
                     <td>{{ $student->email }}</td>
                     <td>{{ $student->age }}</td>
                     <td>
-                        <a href="{{ route('students.show', $student->id) }}" class="btn btn-info">View Details</a>
-                        <a href="{{ route('students.edit', $student->id) }}" class="btn btn-warning">Edit</a>
-                        <form action="{{ route('students.destroy', $student->id) }}" method="POST" style="display:inline;">
+                        <a href="{{ route('student.show', $student->id) }}" class="btn btn-info">View Details</a>
+                        <a href="{{ route('student.edit', $student->id) }}" class="btn btn-warning">Edit</a>
+                        <form action="{{ route('student.destroy', $student->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>
