@@ -15,14 +15,15 @@ Route::get('/', function () {
 });
 
 
+
 Route::resource('student', studentController::class)->names([
-    'index'=>'student.index',
-    'show'=>'student.show',
-    'create'=>'student.create',
-    'update'=>'student.update',
-    'edit'=>'student.edit',
-    'store'=>'student.store',
-    'destroy'=>'student.destroy'
+    'index' => 'student.index',
+    'show' => 'student.show',
+    'create' => 'student.create',
+    'update' => 'student.update',
+    'edit' => 'student.edit',
+    'store' => 'student.store',
+    'destroy' => 'student.destroy'
 ]);
 
 Route::resource('course', courseController::class)->names([
@@ -73,3 +74,4 @@ Route::get('/contact', [homeController::class,'contact'])->name('home.contact');
 
 Route::get('/adminLogin', [authController::class,'adminLogin'])->name('admin.login');
 Route::post('/adminLogin', [authController::class,'adminCheckLogin'])->name('admin.adminCheckLogin');
+
