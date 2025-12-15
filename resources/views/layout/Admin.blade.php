@@ -14,12 +14,12 @@
     </header>
 
     <aside>
-        <a href="/admin/dashboard">Dashboard</a>
-        <a href="/admin/courses">Courses</a>
-        <a href="/admin/departments">Departments</a>
-        <a href="/admin/enrollment">Enrollment</a>
-        <a href="/admin/professors">Professors</a>
-        <a href="/admin/students">Students</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/course">Courses</a>
+        <a href="/department">Departments</a>
+        <a href="/enrollment">Enrollment</a>
+        <a href="/professor">Professors</a>
+        <a href="/student">Students</a>
     </aside>
 
     <main>
