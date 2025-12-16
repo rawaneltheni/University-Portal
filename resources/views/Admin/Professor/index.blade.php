@@ -1,45 +1,60 @@
 @extends('layout.Admin')
 
+@section('title', 'Professors')
+
 @section('content')
-    <h1>Professors</h1>
-    <a href="{{ route('professor.create') }}" class="btn btn-primary mb-3">Add Professor</a>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h3>Professors</h3>
+    <a href="{{ route('professor.create') }}" class="btn btn-primary">+ Add Professor</a>
+</div>
 
-    @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Department</th>
-                <th>Email</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($professors as $professor)
+<div class="card shadow-sm">
+    <div class="card-body">
+        @if($professors->isEmpty())
+            <div class="alert alert-info mb-0">No professors found.</div>
+        @else
+        <table class="table table-hover align-middle">
+            <thead class="table-dark">
                 <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Department</th>
+                    <th class="text-end">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($professors as $i => $professor)
+                <tr>
+                    <td>{{ $i + 1 }}</td>
                     <td>{{ $professor->name }}</td>
-                    <td>{{ $professor->department }}</td>
                     <td>{{ $professor->email }}</td>
                     <td>
-                        <a href="{{ route('professor.edit', $professor->id) }}" class="btn btn-warning">Edit</a>
+                        <span class="badge bg-secondary">
+                            {{ $professor->department->name ?? 'N/A' }}
+                        </span>
+                    </td>
+                    <td class="text-end">
+                        <a href="{{ route('professor.show', $professor->id) }}"
+                           class="btn btn-sm btn-info">Details</a>
 
-                        <form action="{{ route('professor.destroy', $professor->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                        <a href="{{ route('professor.edit', $professor->id) }}"
+                           class="btn btn-sm btn-warning">Edit</a>
+
+                        <form action="{{ route('professor.destroy', $professor->id) }}"
+                              method="POST" class="d-inline">
+                            @csrf @method('DELETE')
+                            <button class="btn btn-sm btn-danger"
+                                    onclick="return confirm('Delete this professor?')">
+                                Delete
+                            </button>
                         </form>
                     </td>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+                @endforeach
+            </tbody>
+        </table>
+        @endif
+    </div>
+</div>
 @endsection
-
-@push('scripts')
-    <script src="{{ asset('storage/js/professor.js') }}"></script>
-@endpush

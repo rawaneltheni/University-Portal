@@ -1,28 +1,48 @@
 @extends('layout.Admin')
 
+@section('title', 'Add Professor')
+
 @section('content')
-    <h1>Add Professor</h1>
-    <form action="{{ route('professor.store') }}" method="POST">
-        @csrf
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name" class="form-control" required>
-        </div>
+<div class="card shadow-sm">
+    <div class="card-header bg-white">
+        <h4>Add Professor</h4>
+    </div>
 
-        <div class="form-group">
-            <label for="department">Department</label>
-            <input type="text" name="department" id="department" class="form-control" required>
-        </div>
+    <div class="card-body">
+        <form action="{{ route('professor.store') }}" method="POST">
+            @csrf
 
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" class="form-control" required>
-        </div>
+            <div class="mb-3">
+                <label class="form-label">Name</label>
+                <input type="text" name="name" class="form-control" value="{{ old('name') }}">
+            </div>
 
-        <button type="submit" class="btn btn-success">Add Professor</button>
-    </form>
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" name="email" class="form-control" value="{{ old('email') }}">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input type="password" name="password" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Department</label>
+                <select name="depId" class="form-select">
+                    <option value="">-- Select Department --</option>
+                    @foreach($departments as $department)
+                        <option value="{{ $department->id }}"
+                            {{ old('depId') == $department->id ? 'selected' : '' }}>
+                            {{ $department->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
+            <button class="btn btn-primary">Save</button>
+            <a href="{{ route('professor.index') }}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
 @endsection
-
-@push('scripts')
-    <script src="{{ asset('storage/js/professor.js') }}"></script>
-@endpush
