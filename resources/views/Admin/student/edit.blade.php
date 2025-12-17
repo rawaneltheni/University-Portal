@@ -1,31 +1,54 @@
 @extends('layout.Admin')
 
+@section('title', 'Edit Student')
+
 @section('content')
-    <h1>Edit Student</h1>
-    <form action="{{ route('student.update', $student->id) }}" method="POST">
-        @csrf
-        @method('PUT')
+<div class="card shadow-sm">
+    <div class="card-header bg-white">
+        <h4>Edit Student</h4>
+    </div>
 
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name" class="form-control" value="{{ $student->name }}" required>
-        </div>
+    <div class="card-body">
+        <form action="{{ route('student.update', $student->id) }}" method="POST">
+            @csrf @method('PUT')
 
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" class="form-control" value="{{ $student->email }}" required>
-        </div>
+            <div class="mb-3">
+                <label class="form-label">Student Number</label>
+                <input type="text" name="stNo" class="form-control" value="{{ $student->stNo }}">
+            </div>
 
-        <div class="form-group">
-            <label for="age">Age</label>
-            <input type="number" name="age" id="age" class="form-control" value="{{ $student->age }}" required>
-        </div>
+            <div class="mb-3">
+                <label class="form-label">Name</label>
+                <input type="text" name="name" class="form-control" value="{{ $student->name }}">
+            </div>
 
-        <button type="submit" class="btn btn-primary">Update Student</button>
-    </form>
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" name="email" class="form-control" value="{{ $student->email }}">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Password (leave empty to keep)</label>
+                <input type="password" name="password" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Average</label>
+                <input type="number" step="0.01" name="avg" class="form-control" value="{{ $student->avg }}">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Status</label>
+                <select name="status" class="form-select">
+                    <option value="active" @selected($student->status=='active')>Active</option>
+                    <option value="notActive" @selected($student->status=='notActive')>Not Active</option>
+                    <option value="dismissed" @selected($student->status=='dismissed')>Dismissed</option>
+                </select>
+            </div>
+
+            <button class="btn btn-warning">Update</button>
+            <a href="{{ route('student.index') }}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
 @endsection
-
-@push('scripts')
-    <script src="{{ asset('storage/js/student.js') }}"></script>
-@endpush
-

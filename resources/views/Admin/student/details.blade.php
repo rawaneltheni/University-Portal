@@ -1,29 +1,37 @@
 @extends('layout.Admin')
 
+@section('title', 'Student Details')
+
 @section('content')
-    <h1>Student Details</h1>
-
-    <div>
-        <p><strong>Name:</strong> {{ $student->name }}</p>
-        <p><strong>Email:</strong> {{ $student->email }}</p>
-        <p><strong>Age:</strong> {{ $student->age }}</p>
-        <p><strong>Created At:</strong> {{ $student->created_at }}</p>
-        <p><strong>Updated At:</strong> {{ $student->updated_at }}</p>
+<div class="card shadow-sm">
+    <div class="card-header bg-white d-flex justify-content-between">
+        <h4>Student Details</h4>
+        <a href="{{ route('student.index') }}" class="btn btn-secondary btn-sm">Back</a>
     </div>
 
-    <div>
-        <a href="{{ route('student.index') }}" class="btn btn-secondary">Back to Students List</a>
-        <a href="{{ route('student.edit', $student->id) }}" class="btn btn-warning">Edit Student</a>
-        <form action="{{ route('student.destroy', $student->id) }}" method="POST" style="display:inline;">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-danger">Delete Student</button>
-        </form>
+    <div class="card-body">
+        <table class="table table-bordered">
+            <tr>
+                <th>Student No</th>
+                <td>{{ $student->stNo }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ $student->name }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ $student->email }}</td>
+            </tr>
+            <tr>
+                <th>Average</th>
+                <td>{{ $student->avg ?? '-' }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ $student->status }}</td>
+            </tr>
+        </table>
     </div>
+</div>
 @endsection
-
-@push('scripts')
-    <script src="{{ asset('storage/js/student.js') }}"></script>
-@endpush
-
-
