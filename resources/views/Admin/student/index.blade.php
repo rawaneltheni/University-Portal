@@ -5,6 +5,9 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-3">
     <h3>Students</h3>
+    @if(session('success'))
+    <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
     <a href="{{ route('student.create') }}" class="btn btn-primary">+ Add Student</a>
 </div>
 
