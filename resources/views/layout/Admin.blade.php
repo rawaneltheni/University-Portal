@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="{{ asset('storage/CSS/admin.css') }}">
+
 </head>
 <body>
 
@@ -14,7 +15,7 @@
     </header>
   
     <aside>
-        <a href="/dashboard">Dashboard</a>
+        <a href="/dashboard" class="active">Dashboard</a>
         <a href="/course">Courses</a>
         <a href="/department">Departments</a>
         <a href="/enrollment">Enrollment</a>
