@@ -9,7 +9,7 @@
             <p class="text-muted mt-3">
                 Manage students, courses, departments, and enrollments — all in one place.
             </p>
-            <a href="/login" class="btn btn-primary btn-lg mt-2">Get Started</a>
+            <a href="/adminLogin" class="btn btn-primary btn-lg mt-2">Get Started</a>
         </div>
         <div class="col-md-6 text-center">
             <img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png"
