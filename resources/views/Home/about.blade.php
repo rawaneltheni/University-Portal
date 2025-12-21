@@ -1,7 +1,9 @@
 @extends('layout.Home')
 
+@section('title', 'About')
+
 @section('content')
-<div class="container">
+<div class="container about-page">
 
     {{-- Page Title --}}
     <div class="text-center mb-5">
@@ -27,7 +29,7 @@
 
         <div class="col-md-6 text-center">
             <img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png"
-                 class="img-fluid" width="280">
+                 class="img-fluid" width="280" alt="About UniPortal">
         </div>
     </div>
 
