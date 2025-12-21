@@ -14,7 +14,7 @@
         <div>
             <h1>UniversityPortal</h1>
         </div>
-        <a href="/login">Login</a>
+        <a href="/adminLogin">Login</a>
     </header>
 
 
