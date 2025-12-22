@@ -71,7 +71,9 @@ Route::middleware(middleware:'auth:admin')->group(callback:function():void{
     'edit'=>'enrollment.edit',
     'store'=>'enrollment.store',
     'destroy'=>'enrollment.destroy']);
-    
+
+    Route::post(uri:'adminLogout',action: [authController::class,'logout'])->name(name:'admin.logout');
 
 });
+
 
