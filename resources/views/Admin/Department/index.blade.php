@@ -22,30 +22,34 @@
     <div class="card shadow-sm">
         <div class="card-body">
 
-            <table>
-                <thead>
+            @if($departments->isEmpty())
+                <div class="alert alert-info mb-0">No departments found.</div>
+            @else
+            <table class="table table-hover align-middle">
+                <thead class="table-dark">
                     <tr>
-                        <th>ID</th>
+                        <th>#</th>
                         <th>Name</th>
                         <th>Symbol</th>
-                        <th>Actions</th>
+                        <th class="text-end">Actions</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    @foreach($departments as $department)
+                    @foreach($departments as $i => $department)
                     <tr>
-                        <td>{{ $department->id }}</td>
+                        <td>{{ $i + 1 }}</td>
                         <td>{{ $department->name }}</td>
                         <td>{{ $department->symbol }}</td>
-                        <td>
+                        <td class="text-end">
                             <a href="{{ route('department.show',$department->id) }}" class="btn btn-info btn-sm">View</a>
                             <a href="{{ route('department.edit',$department->id) }}" class="btn btn-warning btn-sm">Edit</a>
 
                             <form action="{{ route('department.destroy',$department->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-danger btn-sm" onclick="return confirm('Delete this department?')">
+                                <button class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Delete this department?')">
                                     Delete
                                 </button>
                             </form>
@@ -55,6 +59,7 @@
                 </tbody>
 
             </table>
+            @endif
 
         </div>
     </div>

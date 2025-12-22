@@ -10,6 +10,10 @@
             <h2>Enrollment</h2>
 
             <div class="right-tools">
+                @if(session('success'))
+                    <div class="alert alert-success mb-0">{{ session('success') }}</div>
+                @endif
+
                 <a href="{{ route('enrollment.create') }}" class="btn btn-primary btn-sm">
                     + Add New
                 </a>
@@ -20,27 +24,36 @@
     <div class="card shadow-sm">
         <div class="card-body">
 
-            <table class="table">
-                <thead>
+            @if($enrollments->isEmpty())
+                <div class="alert alert-info mb-0">No enrollments found.</div>
+            @else
+            <table class="table table-hover align-middle">
+                <thead class="table-dark">
                     <tr>
+                        <th>#</th>
                         <th>Student</th>
                         <th>Course</th>
                         <th>Professor</th>
                         <th>Mark</th>
-                        <th>Actions</th>
+                        <th class="text-end">Actions</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    @foreach($enrollments as $enrollment)
+                    @foreach($enrollments as $i => $enrollment)
                     <tr>
+                        <td>{{ $i + 1 }}</td>
                         <td>{{ $enrollment->student->fname }}</td>
                         <td>{{ $enrollment->course->name }}</td>
                         <td>{{ $enrollment->professor->name }}</td>
                         <td>{{ $enrollment->mark ?? '—' }}</td>
-                        <td>
-                            <a href="{{ route('enrollment.show', $enrollment) }}" class="btn btn-info btn-sm">View</a>
-                            <a href="{{ route('enrollment.edit', $enrollment) }}" class="btn btn-sm btn-warning">Edit</a>
+                        <td class="text-end">
+                            <a href="{{ route('enrollment.show', $enrollment) }}" class="btn btn-info btn-sm">
+                                Details
+                            </a>
+                            <a href="{{ route('enrollment.edit', $enrollment) }}" class="btn btn-warning btn-sm">
+                                Edit
+                            </a>
 
                             <form action="{{ route('enrollment.destroy', $enrollment) }}"
                                   method="POST" class="d-inline">
@@ -56,6 +69,7 @@
                     @endforeach
                 </tbody>
             </table>
+            @endif
 
         </div>
     </div>
