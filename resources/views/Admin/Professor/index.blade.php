@@ -11,6 +11,9 @@
         <div class="bar">
             <h3>Professors</h3>
             <div class="right-tools">
+                @if(session('success'))
+                    <div class="alert alert-success mb-0">{{ session('success') }}</div>
+                @endif
                 <a href="{{ route('professor.create') }}" class="btn btn-primary">+ Add Professor</a>
             </div>
         </div>
