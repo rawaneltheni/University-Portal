@@ -5,66 +5,72 @@
     <title>Admin Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap 5 -->
+    <!-- Optional Bootstrap (alerts layout only) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Auth CSS -->
+    <link rel="stylesheet" href="{{ asset('storage/CSS/auth.css') }}">
 </head>
 
-<body class="bg-light d-flex align-items-center justify-content-center" style="min-height:100vh;">
+<body>
 
-<div class="card shadow-lg" style="width: 400px;">
-    <div class="card-header bg-dark text-white text-center">
-        <h4 class="mb-0">Admin Login</h4>
-    </div>
+<div class="auth-wrapper">
+    <div class="auth-card">
 
-    <div class="card-body">
+        <div class="auth-header">
+            <h4>Admin Login</h4>
+        </div>
 
-        {{-- Error Message --}}
-        @if(session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
-            </div>
-        @endif
+        <div class="auth-body">
 
-        {{-- Validation Errors --}}
-        @if($errors->any())
-            <div class="alert alert-danger">
-                <ul class="mb-0">
-                    @foreach($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+            {{-- Error Message --}}
+            @if(session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
 
-        <form action="{{ route('admin.adminCheckLogin') }}" method="POST">
-            @csrf
+            {{-- Validation Errors --}}
+            @if($errors->any())
+                <div class="alert alert-danger">
+                    <ul class="mb-0">
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
-            <div class="mb-3">
-                <label class="form-label">Email</label>
-                <input type="email"
-                       name="email"
-                       class="form-control"
-                       value="{{ old('email') }}"
-                       placeholder="admin@example.com">
-            </div>
+            <form action="{{ route('admin.adminCheckLogin') }}" method="POST">
+                @csrf
 
-            <div class="mb-3">
-                <label class="form-label">Password</label>
-                <input type="password"
-                       name="password"
-                       class="form-control"
-                       placeholder="••••••••">
-            </div>
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email"
+                           name="email"
+                           class="form-control"
+                           value="{{ old('email') }}"
+                           placeholder="admin@example.com">
+                </div>
 
-            <button class="btn btn-dark w-100">Login</button>
-        </form>
-    </div>
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input type="password"
+                           name="password"
+                           class="form-control"
+                           placeholder="••••••••">
+                </div>
 
-    <div class="card-footer text-center text-muted small">
-        Admin Panel © {{ date('Y') }}
+                <button class="auth-btn">Login</button>
+            </form>
+        </div>
+
+        <div class="auth-footer">
+            Admin Panel © {{ date('Y') }}
+        </div>
+
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

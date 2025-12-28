@@ -13,22 +13,40 @@ class authController extends Controller
 
 public function adminLogin()
     {
-        return view('Auth.admin');
+        return view(view: 'Auth.admin');
     }
 
-    public function adminCheckLogin(Request $request)
+    public function adminCheckLogin(Request $request): RedirectResponse
     {
-        $credentials=$request->validate([
+        $credentials=$request->validate(rules: [
             'email'=>['required','email'],
             'password'=>['required']
         ]);
-        $admin=Admin::where('email',$credentials['email'])->first();
-        if($admin && Hash::check($credentials['password'],$admin->password))
+        $admin=Admin::where(column: 'email',operator: $credentials['email'])->first();
+        if($admin && Hash::check(value: $credentials['password'], hashedValue: $admin->password))
         {
-             Auth::guard('admin')->login($admin);
-             return redirect()->route('dashboard')->with('suceess','Hello'.$admin->name);
+             Auth::guard(name: 'admin')->login(user: $admin);
+             return redirect()->route(route: 'dashboard')->with(key: 'suceess',Value: 'Hello'.$admin->name);
         }
-        return redirect()->back()->with('error','invalid email or password');
+        return redirect()->back()->with(key: 'error',value: 'invalid email or password');
     }
+    
+    public function logout(Request $request)
+{
+    if (Auth:: guard(name: 'Admin')->check())
+     {
+        Auth:: guard(name: 'Admin')->logout();
+     }
+    $request->sessionn()->incalidate();
+    $request->sessionn()->reg(nnerate);
+    
+    
+}
 
 }
+
+
+
+
+
+

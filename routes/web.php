@@ -22,58 +22,59 @@ Route::get('/contact', [homeController::class,'contact'])->name('home.contact');
 
 Route::get('/adminLogin', [authController::class,'adminLogin'])->name('admin.login');
 Route::post('/adminLogin', [authController::class,'adminCheckLogin'])->name('admin.adminCheckLogin');
+Route::middleware(['auth:admin'])->group(function () {
 
-Route::middleware(middleware:'auth:admin')->group(callback:function():void{
-
-    Route::get('dashboard', [dashboardcontroller::class,'index'])->name('dashboard');
+    Route::get('/dashboard', [dashboardcontroller::class, 'index'])->name('dashboard');
 
     Route::resource('student', studentController::class)->names([
-    'index' => 'student.index',
-    'show' => 'student.show',
-    'create' => 'student.create',
-    'update' => 'student.update',
-    'edit' => 'student.edit',
-    'store' => 'student.store',
-    'destroy' => 'student.destroy']);
+        'index' => 'student.index',
+        'show' => 'student.show',
+        'create' => 'student.create',
+        'update' => 'student.update',
+        'edit' => 'student.edit',
+        'store' => 'student.store',
+        'destroy' => 'student.destroy',
+    ]);
 
     Route::resource('course', courseController::class)->names([
-    'index'=>'course.index',
-    'show'=>'course.show',
-    'create'=>'course.create',
-    'update'=>'course.update',
-    'edit'=>'course.edit',
-    'store'=>'course.store',
-    'destroy'=>'course.destroy']);
+        'index' => 'course.index',
+        'show' => 'course.show',
+        'create' => 'course.create',
+        'update' => 'course.update',
+        'edit' => 'course.edit',
+        'store' => 'course.store',
+        'destroy' => 'course.destroy',
+    ]);
 
     Route::resource('professor', professorController::class)->names([
-    'index'=>'professor.index',
-    'show'=>'professor.show',
-    'create'=>'professor.create',
-    'update'=>'professor.update',
-    'edit'=>'professor.edit',
-    'store'=>'professor.store',
-    'destroy'=>'professor.destroy']);
+        'index' => 'professor.index',
+        'show' => 'professor.show',
+        'create' => 'professor.create',
+        'update' => 'professor.update',
+        'edit' => 'professor.edit',
+        'store' => 'professor.store',
+        'destroy' => 'professor.destroy',
+    ]);
 
     Route::resource('department', departmentController::class)->names([
-    'index'=>'department.index',
-    'show'=>'department.show',
-    'create'=>'department.create',
-    'update'=>'department.update',
-    'edit'=>'department.edit',
-    'store'=>'department.store',
-    'destroy'=>'department.destroy']);
+        'index' => 'department.index',
+        'show' => 'department.show',
+        'create' => 'department.create',
+        'update' => 'department.update',
+        'edit' => 'department.edit',
+        'store' => 'department.store',
+        'destroy' => 'department.destroy',
+    ]);
 
     Route::resource('enrollment', enrollmentController::class)->names([
-    'index'=>'enrollment.index',
-    'show'=>'enrollment.show',
-    'create'=>'enrollment.create',
-    'update'=>'enrollment.update',
-    'edit'=>'enrollment.edit',
-    'store'=>'enrollment.store',
-    'destroy'=>'enrollment.destroy']);
+        'index' => 'enrollment.index',
+        'show' => 'enrollment.show',
+        'create' => 'enrollment.create',
+        'update' => 'enrollment.update',
+        'edit' => 'enrollment.edit',
+        'store' => 'enrollment.store',
+        'destroy' => 'enrollment.destroy',
+    ]);
 
-    Route::post(uri:'adminLogout',action: [authController::class,'logout'])->name(name:'admin.logout');
-
+    Route::post('/adminLogout', [authController::class, 'logout'])->name('admin.logout');
 });
-
-
