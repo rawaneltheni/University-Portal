@@ -14,7 +14,7 @@
             <div class="card text-center shadow-sm dashboard-card">
                 <div class="card-body">
                     <div class="dash-icon">
-                        👨‍🎓
+                        <i class="fa-solid fa-user-graduate"></i>
                     </div>
                     <h6>Total Students</h6>
                     <h2>{{ $students }}</h2>
@@ -27,7 +27,7 @@
             <div class="card text-center shadow-sm dashboard-card">
                 <div class="card-body">
                     <div class="dash-icon">
-                        📚
+                        <i class="fa-solid fa-book-open"></i>
                     </div>
                     <h6>Total Courses</h6>
                     <h2>{{ $courses }}</h2>
@@ -40,7 +40,7 @@
             <div class="card text-center shadow-sm dashboard-card">
                 <div class="card-body">
                     <div class="dash-icon">
-                        👨‍🏫
+                        <i class="fa-solid fa-chalkboard-user"></i>
                     </div>
                     <h6>Total Professors</h6>
                     <h2>{{ $professors }}</h2>
@@ -53,7 +53,7 @@
             <div class="card text-center shadow-sm dashboard-card">
                 <div class="card-body">
                     <div class="dash-icon">
-                        📝
+                        <i class="fa-solid fa-clipboard-list"></i>
                     </div>
                     <h6>Total Enrollments</h6>
                     <h2>{{ $enrollment }}</h2>

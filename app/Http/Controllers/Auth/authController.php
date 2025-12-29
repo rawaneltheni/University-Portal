@@ -16,20 +16,25 @@ public function adminLogin()
         return view(view: 'Auth.admin');
     }
 
-    public function adminCheckLogin(Request $request): RedirectResponse
-    {
-        $credentials=$request->validate(rules: [
-            'email'=>['required','email'],
-            'password'=>['required']
-        ]);
-        $admin=Admin::where(column: 'email',operator: $credentials['email'])->first();
-        if($admin && Hash::check(value: $credentials['password'], hashedValue: $admin->password))
-        {
-             Auth::guard(name: 'admin')->login(user: $admin);
-             return redirect()->route(route: 'dashboard')->with(key: 'suceess',Value: 'Hello'.$admin->name);
-        }
-        return redirect()->back()->with(key: 'error',value: 'invalid email or password');
+   public function adminCheckLogin(Request $request): \Illuminate\Http\RedirectResponse
+{
+    $credentials = $request->validate([
+        'email' => ['required', 'email'],
+        'password' => ['required'],
+    ]);
+
+    $admin = Admin::where('email', $credentials['email'])->first();
+
+    if ($admin && Hash::check($credentials['password'], $admin->password)) {
+        Auth::guard('admin')->login($admin);
+
+        return redirect()->route('dashboard')
+            ->with('success', 'Hello ' . $admin->name);
     }
+
+    return redirect()->back()
+        ->with('error', 'Invalid email or password');
+}
     
     public function logout(Request $request)
 {
@@ -38,7 +43,7 @@ public function adminLogin()
         Auth:: guard(name: 'Admin')->logout();
      }
     $request->sessionn()->incalidate();
-    $request->sessionn()->reg(nnerate);
+    $request->sessionn()->regenerate();
     
     
 }
