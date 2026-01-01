@@ -1,7 +1,5 @@
 @extends('layout.Admin')
 
-@section('title', 'Edit Professor')
-
 @section('content')
 <div class="professors-page professors-form">
 
