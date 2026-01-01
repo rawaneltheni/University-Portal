@@ -1,6 +1,6 @@
 @extends('layout.Admin')
 
-@section('title', 'Students')
+
 
 @section('content')
 <div class="students-page">

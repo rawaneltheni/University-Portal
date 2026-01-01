@@ -43,7 +43,7 @@
                     @foreach($enrollments as $i => $enrollment)
                     <tr>
                         <td>{{ $i + 1 }}</td>
-                        <td>{{ $enrollment->student->fname }}</td>
+                        <td>{{ $enrollment->student->name }}</td>
                         <td>{{ $enrollment->course->name }}</td>
                         <td>{{ $enrollment->professor->name }}</td>
                         <td>{{ $enrollment->mark ?? '—' }}</td>
